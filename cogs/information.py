@@ -13,8 +13,22 @@ class information(commands.Cog):
         
         member = await self.bot.fetch_user(member.id)
         
-        embed = discord.Embed(title = f"{member.name}'s avatar", url=member.display_avatar.url)
+        embed = discord.Embed(title = f"{member.name}'s avatar", url = member.display_avatar.url, color = self.bot.color)
         embed.set_image(url=member.avatar.url)
+        await ctx.reply(embed=embed)
+        
+    @commands.command(name="serveravatar", aliases=["sav"])
+    async def serveravatar(self, ctx: commands.Context, member: discord.Member=None):
+        
+        if member is None: 
+            member = ctx.author
+            
+        if member.guild_avatar is None: 
+            return await ctx.warning(f'**{member}** doesnt have a server avatar set.')
+
+        
+        embed = discord.Embed(title = f"{member.name}'s server avatar", url=member.display_avatar.url, color = self.bot.color)
+        embed.set_image(url=member.guild_avatar.url)
         await ctx.reply(embed=embed)
 
 async def setup(bot):
