@@ -21,8 +21,10 @@ class harm(commands.Bot):
         
 bot = harm()
 
-@bot.event()
-async def on_ready():
-    print(f"{bot.user.name} has successfully connected to Discord API.")
+async def setup_hook(self):
     await bot.load_extension('jishaku')
     await bot.load_extension('cogs.owner')
+    
+@bot.event
+async def on_ready():
+    print(f"{bot.user.name} has successfully connected to Discord API.")
