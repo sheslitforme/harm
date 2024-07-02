@@ -1,6 +1,15 @@
 import discord, logging, os, dotenv
 from discord.ext import commands
 
+logging.basicConfig(
+    level=logging.INFO, 
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("debug.log"),
+        logging.StreamHandler()
+    ]
+)
+
 dotenv.load_dotenv(verbose=True)
 
 token = os.environ['token']
