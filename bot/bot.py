@@ -1,18 +1,6 @@
-import discord, logging, os, dotenv
+import discord
 from discord.ext import commands
 
-logging.basicConfig(
-    level=logging.INFO, 
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler("debug.log"),
-        logging.StreamHandler()
-    ]
-)
-
-dotenv.load_dotenv(verbose=True)
-
-token = os.environ['token']
 
 class harm(commands.Bot):
     def __init__(self) -> None:
