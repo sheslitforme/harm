@@ -11,7 +11,6 @@ class harm(commands.Bot):
         
         self.color = 0xffffff
         
-
     async def setup_hook(self):
         await self.load_extension('jishaku')
         await Startup.cogs(self)

@@ -25,10 +25,29 @@ class information(commands.Cog):
             
         if member.guild_avatar is None: 
             return await ctx.warning(f'**{member}** doesnt have a server avatar set.')
-
         
         embed = discord.Embed(title = f"{member.name}'s server avatar", url=member.display_avatar.url, color = self.bot.color)
         embed.set_image(url=member.guild_avatar.url)
+        await ctx.reply(embed=embed)
+        
+    @commands.command(name='serverbanner', aliases=["sb", "sbanner", "gbanner"])
+    async def serverbanner(self, ctx: commands.Context):
+        
+        if ctx.guild.banner is None:
+            return await ctx.warning(f"This server **doesn't** have a server banner.")
+        
+        embed = discord.Embed(title = f"{ctx.guild.name}'s banner", url=ctx.guild.banner.url, color = self.bot.color)
+        embed.set_image(url=ctx.guild.banner.url)
+        await ctx.reply(embed=embed)
+    
+    @commands.command(name='servericon', aliases=["sicon", "gicon"])
+    async def servericon(self, ctx: commands.Context):
+        
+        if ctx.guild.icon is None:
+            return await ctx.warning(f"This server **doesn't** have a server icon.")
+        
+        embed = discord.Embed(title = f"{ctx.guild.name}'s icon", url=ctx.guild.icon.url, color = self.bot.color)
+        embed.set_image(url=ctx.guild.banner.url)
         await ctx.reply(embed=embed)
 
 async def setup(bot):
