@@ -1,5 +1,4 @@
 import dotenv, logging, os
-from discord.ext import commands
 from bot.bot import harm
 
 logging.basicConfig(
