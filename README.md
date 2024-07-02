@@ -4,4 +4,4 @@ open source bot i'll occasionally update when im bored, bot is not meant to be u
 
 add my public bot @ https://resent.dev
 
-- stop talking my github to you fans
+- stop stalking my github to you fans
