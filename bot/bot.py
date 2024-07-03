@@ -1,4 +1,4 @@
-import discord, discord_ios, os, asyncpg
+import discord, discord_ios, os, asyncpg, dotenv
 
 from discord.ext import commands
 
@@ -16,14 +16,14 @@ class harm(commands.Bot):
         self.db = db
         self.color = 0xffffff
         
-        self.resent_api = os.environ.get["resent_api"]
-        self.proxy = os.environ.get["proxy"]
+        self.resent_api = os.environ.get("resent_api")
+        self.proxy = os.environ.get("proxy")
         
         self.commands_url = os.environ.get("commands_url")
         self.support_server = os.environ.get("support_server")
         
     async def create_db(self):
-        self.db = await asyncpg.create_pool(port="5432", database=os.environ.get["database"], user=os.environ.get["user"], host="localhost", password=os.environ.get["password"])
+        self.db = await asyncpg.create_pool(port="5432", database=os.environ.get("database"), user=os.environ.get("user"), host="localhost", password=os.environ.get("password"))
         
     async def setup_hook(self):
         await create_tables(self)
