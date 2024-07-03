@@ -1,7 +1,10 @@
 import discord, discord_ios, os, asyncpg
+
 from discord.ext import commands
+
 from bot.startup import Startup
 from bot.ext import HarmContext
+from bot.database import create_tables
 
 class harm(commands.Bot):
     def __init__(self, db: asyncpg.Pool=None):
@@ -19,7 +22,12 @@ class harm(commands.Bot):
         self.commands_url = os.environ.get("commands_url")
         self.support_server = os.environ.get("support_server")
         
+    async def create_db(self):
+        self.db = await asyncpg.create_pool(port="5432", database=os.environ.get["database"], user=os.environ.get["user"], host="localhost", password=os.environ.get["password"])
+        
     async def setup_hook(self):
+        await create_tables(self)
+        await self.create_db()
         await self.load_extension('jishaku')
         await Startup.cogs(self)
         
